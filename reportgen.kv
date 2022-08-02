@@ -1,0 +1,58 @@
+#:kivy 2.1.0
+
+#.kv file implementation of FloatLayout
+
+
+<MyLayout>:
+    FloatLayout: 
+        size: root.width, root.height
+        
+        canvas:
+            Color: 
+                rgba: 1, 1, 1, .8
+            Rectangle:
+                source: 'pexels-photomix-company-95916.jpg'
+                pos: self.pos
+                size: self.size
+
+        Button:
+            id: topbutton
+            text: "-- Check for Recently Modified Files --"
+            background_color: 0.1, 0.5, 0.6, 1
+            pos_hint: {"x":.1, "top":1}
+            size_hint: .8, .2
+            font_size: 60
+        
+        TextInput:
+            id: path_input
+            hint_text:"Enter Directory Path to Search (ex. /Users/name/Desktop/folder/*)"
+            size_hint: 0.7, 0.05
+            pos_hint: {"x":.15, "y":.5}
+
+        TextInput:
+            id: path_input2
+            hint_text:"Enter Report Destination Path (ex. /Users/name/Desktop/folder/report.csv)"
+            size_hint: 0.7, 0.05
+            pos_hint: {"x":.15, "y":.45}
+
+        Button:
+            id: firstbutton
+            size: self.texture_size
+            text:"Click here to Produce Report"
+            pos_hint: {"x":.25, "top":.4}
+            background_color: 0.1, 0.5, 0.6, 1
+            size_hint: .5, 0.05
+            font_size: 40
+            on_press: root.click()
+
+        Label:
+            id: results
+            font_size: 40
+            text: ''
+            pos_hint: {"x":.25, "top":0}
+            size_hint: .5, 0.05
+            background_color: 0.1, 0.5, 0.6, 1
+
+
+# Eucalyptus rgba: .27, .96, .65, .75
+
