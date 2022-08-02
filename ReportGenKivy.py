@@ -13,31 +13,23 @@ import os
 import glob
 # datetime for working with file creation/modification dates and times
 import datetime
-
-from cgitb import text
-from turtle import color
+# Kive modules - must import for each kivy instantiation
 from kivy.properties import ObjectProperty, NumericProperty, StringProperty
-from gc import callbacks
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.core.image import Image as CoreImage
 from kivy.uix.floatlayout import FloatLayout
-# to change the kivy default settings, use config module 
 from kivy.config import Config 
 # textinput module to capture user input
 from kivy.uix.textinput import TextInput    
-# 0 being off 1 being on as in true / false 
 from kivy.uix.widget import Widget
-#from kivy.graphics import Rectangle, Color, Triangle
-# you can use 0 or 1 && True or False 
-from kivy.uix.scrollview import ScrollView
 from kivy.lang import Builder
-from numpy import size, source
 from kivy.graphics import Canvas, Color, Rectangle
 
+#override default graphics settings, allow resize with window
 Config.set('graphics', 'resizable', True)
 
-# do not need to run file. program automatically looks for and loads file "reportgen.kv"
+# points to associated kv file - another option is to name your "App" with the same name as your kv file.
 Builder.load_file('reportgen.kv')
 
 
