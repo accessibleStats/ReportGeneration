@@ -2,7 +2,9 @@
 
 
                      Reportgen App
-           * check for recently modified files
+           * Kivy application with multiple screens + navigation
+           * App currently will check system/directories for recently modified files
+           and generate a csv report in a specified location.
 
 '''
 # pandas for working with dataframes and exporting report
@@ -25,15 +27,18 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.graphics import Canvas, Color, Rectangle
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
 
 #override default graphics settings, allow resize with window
 Config.set('graphics', 'resizable', True)
 
-# points to associated kv file - another option is to name your "App" with the same name as your kv file.
-Builder.load_file('reportgen.kv')
+# Define screens
 
+class OpeningScreen(Screen):
+    pass
 
-class MyLayout(Widget):
+class ModifiedFilesScreen(Screen):
     # function to write report to csv
     def outputtocsv(moddf):
         fileoutputpath = str(input('Enter the path for your report - no encapsulation necessary:'))
@@ -81,6 +86,12 @@ class MyLayout(Widget):
         o = self.ids.path_input2.text 
         #output csv report
         moddf.to_csv(o)
+
+class ScreenManagement(ScreenManager):
+    pass
+
+# points to associated kv file - another option is to name your "App" with the same name as your kv file.
+kvfile = Builder.load_file('reportgen.kv')
    
 
 
@@ -88,7 +99,7 @@ class MyLayout(Widget):
 class ReportApp(App):       
     # returning the instance of root class
     def build(self):
-        return MyLayout()
+        return kvfile
 
 if __name__ == '__main__':
     ReportApp().run()
